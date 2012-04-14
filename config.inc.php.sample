@@ -1,0 +1,24 @@
+<?php
+
+$config = array(
+	"root" => "/~prauscher/eplite-portal/",
+	"admins" => array(
+		"prauscher",
+	),
+	"ldap" => array(
+		"server" => "ldap://localhost/",
+		"rdn" => "cn=admin,dc=prauscher,dc=homelinux,dc=net",
+		"pass" => 'anything92',
+		"base_dn" => "ou=ucp,dc=prauscher,dc=homelinux,dc=net",
+	),
+	"eplite" => array(
+		"apiurl" => "http://192.168.100.166:9001/api",
+		"padurl" => 'http://192.168.100.166:9001/p/%s$%s',
+		"apikey" => "xxx"
+	),
+	"defaultpadtext" => <<<EOT
+Willkommen bei EtherPad Lite
+EOT
+);
+
+?>
