@@ -57,8 +57,7 @@ $groupName = $_SERVER["HTTP_HOST"];
 try {
 	$result = $eplite->createGroupIfNotExistsFor($groupName);
 } catch (Exception $e) {
-	file_get_contents($config["eplite"]["restarturl"]);
-	$result = "_RESTART_DONE";
+	$result = json_decode(file_get_contents($config["eplite"]["restarturl"]));
 }
 if ($result == "_RESTART_DONE") {
 	header("Refresh: 5");
