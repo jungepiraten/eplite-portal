@@ -54,7 +54,14 @@ $smarty->assign("user", $user);
 // Configure EP-Lite-API
 $eplite = new EtherpadLiteClient($config["eplite"]["apikey"], $config["eplite"]["apiurl"]);
 $groupName = $_SERVER["HTTP_HOST"];
-$groupID = $eplite->createGroupIfNotExistsFor($groupName)->groupID;
+$result = $eplite->createGroupIfNotExistsFor($groupName);
+if ($result == "_RESTART_DONE") {
+	header("Refresh: 5");
+	print("<h1>Please wait while we restart Etherpad Lite</h1>");
+	exit;
+}
+
+$groupID = $result->groupID;
 
 $padID = null;
 if (isset($_REQUEST["padName"])) {
